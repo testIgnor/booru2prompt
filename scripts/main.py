@@ -241,7 +241,7 @@ def searchbooru(query, removeanimated, curpage, pagechange=0):
                 imageurl = gethost() + imageurl
             #We're storing the images locally to be crammed into a Gradio gallery later.
             #This seemed simpler than using PIL images or whatever.
-            savepath = edirectory + f"tempimages\\temp{i}.jpg"
+            savepath = edirectory + f"tempimages/temp{i}.jpg"
             
             saveImage(imageurl, savepath)
             
@@ -293,7 +293,6 @@ def constructPostURL(id):
     auth = ''
     
     url = host + fmt['post']
-    
     #Only append login parameters if we actually got some from the above getauth()
     #In the default settings.json in the repo, these are empty strings, so they'll
     #return false here.
@@ -364,8 +363,6 @@ def grabtags(url, negprompt, replacespaces, replaceunderscores, includeartist, i
             url += f"login={u}&"
         if a:
             url += f"api_key={a}&"
-
-    print(url)
     
     fmt = settings['formats'][getFormat()]
 
@@ -428,10 +425,10 @@ def grabtags(url, negprompt, replacespaces, replaceunderscores, includeartist, i
     #Creating the temp directory if it doesn't already exist
     if not os.path.exists(edirectory + "tempimages"):
         os.makedirs(edirectory + "tempimages")
-    saveImage(imageurl, edirectory +  "tempimages\\temp.jpg")
+    saveImage(imageurl, edirectory +  "tempimages/temp.jpg")
 
     #My god look at that tuple
-    return (tags, edirectory + "tempimages\\temp.jpg", artisttags, charactertags, copyrighttags, metatags)
+    return (tags, edirectory + "tempimages/temp.jpg", artisttags, charactertags, copyrighttags, metatags)
 
 def on_ui_tabs():
     #Just setting up some gradio components way early
